@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, RouterOutlet} from 'angular2/router';
-import {ActorService} from "../services/actor.service";
+import {ActorService, IActor} from "../services/actor.service";
 
 @Component({
     directives: [RouterOutlet],
@@ -18,10 +18,10 @@ import {ActorService} from "../services/actor.service";
                     <th>Username</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>user1</td>
+                    <tr *ngFor="#actor of _actors">
+                        <td>{{actor.firstName}}</td>
+                        <td>{{actor.lastName}}</td>
+                        <td>{{actor.username}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -30,7 +30,11 @@ import {ActorService} from "../services/actor.service";
     `
 })
 export class ActorsListComponent {
-    constructor(private actorService: ActorService){
-        
+    private _actors: IActor[];
+    constructor(private _actorService: ActorService){
+        _actorService.getActors().subscribe(
+            data => this._actors = data,
+            error => console.log(error)
+        );
     }
 }
