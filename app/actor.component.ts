@@ -1,10 +1,12 @@
-import {Component} from 'angular2/core';
+import {Component, ViewChild} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 import {Router, RouteConfig, RouterOutlet, RouteParams} from 'angular2/router';
 import {ActorService, IActor} from "../services/actor.service";
+import {TabComponent} from "./tab.component";
+import {Tab} from 'ng2-bootstrap';
 
 @Component({
-    directives: [RouterOutlet],
+    directives: [RouterOutlet, TabComponent],
     providers: [ActorService],
     template: `
     <div class="panel panel-default">
@@ -38,16 +40,18 @@ import {ActorService, IActor} from "../services/actor.service";
                         </div>                        
                     </div>
                 </div>
-                <button type="submit" class="btn btn-default" [disabled]="!actorForm.form.valid">Submit</button>
+                <button type="submit" class="btn btn-default" [disabled]="!actorForm.form.valid">Save</button>
             </form>
+            <tab-component></tab-component>
         </div>
     </div>    
     `
 })
-export class ActorComponent {
+export class ActorComponent{
 
     private _index: number;
     private _actor: IActor = { firstName: "", lastName: "", username: "" };
+    @ViewChild(TabComponent) private _tabComponent: TabComponent;
 
     constructor(private _routeParams: RouteParams, private _actorService: ActorService, private _router: Router) {
         this._index = +this._routeParams.get('index');
@@ -57,7 +61,7 @@ export class ActorComponent {
             error => console.log(error)
         );
     }
-
+    
     onSubmit = () => {
         this._actorService.saveActor(this._index, this._actor);
         this._router.navigate(['ActorsList', {index: this._index}]);

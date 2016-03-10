@@ -9,7 +9,7 @@ import {RouteConfig, RouterOutlet} from 'angular2/router';
             <h3 class="panel-title">About</h3>
         </div>
         <div class="panel-body">
-        Sample app about actors and orders
+        Sample app about actors
         </div>
     </div>
     `
