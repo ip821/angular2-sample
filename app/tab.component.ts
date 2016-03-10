@@ -1,6 +1,6 @@
-import {Component, ViewChildren, DynamicComponentLoader, Injector, ElementRef, NgZone, QueryList} from 'angular2/core';
+import {Component, ViewChildren, DynamicComponentLoader, Injector, ElementRef, AfterViewInit, QueryList}  from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
-import {TabDynamicComponent} from "./tabdynamic.component";
+import {TabDynamicComponent, ITabDynamicDescriptor} from "./tabdynamic.component";
 import {TabContentComponent} from "./tabcontent.component";
 import jquery = require("jquery");
 
@@ -20,24 +20,39 @@ import jquery = require("jquery");
         </div>
     `
 })
-export class TabComponent {
+export class TabComponent implements AfterViewInit {
 
     tabNumber: number;
 
-    public _tabs: Array<any> = [
+    public _tabs: ITabDynamicDescriptor[] = [
         { title: 'Details', active: true, type: TabContentComponent, index: 0 },
-        { title: 'Orders', type: TabContentComponent, index: 1 }
+        { title: 'Orders', active: false, type: TabContentComponent, index: 1 }
     ];
-    
+
     @ViewChildren(TabDynamicComponent) _tabComponents: QueryList<TabDynamicComponent>;
 
-    constructor(private _dcl: DynamicComponentLoader, private _injector: Injector, private _elementRef: ElementRef, private _ngZone: NgZone) {
+    constructor(private _dcl: DynamicComponentLoader, private _injector: Injector, private _elementRef: ElementRef) {
+    }
+
+    ngAfterViewInit() {
+        var array = this._tabComponents.toArray();
+        for (var index = 0; index < array.length; index++) {
+            var descriptor = this._tabs[index];
+            array[index].setDescriptor(descriptor);
+            if (descriptor.active) {
+                this.activateTab(index);
+            }
+        }
     }
 
     onSelect = ($event: Event, index: number) => {
         $event.preventDefault();
         this._tabs.forEach(c => c.active = false);
         this._tabs[index].active = true;
-        this._tabComponents.toArray()[index].setActive(index);
+        this.activateTab(index);
+    }
+
+    activateTab = (index: number) => {
+        this._tabComponents.toArray()[index].onActivate();
     }
 }

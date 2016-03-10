@@ -1,15 +1,20 @@
 import {Component} from 'angular2/core';
+import {ITabDynamicContentSupport, ITabDynamicDescriptor} from "./tabdynamic.component";
 
 @Component({
     selector: "dynamic-component",
-    template:`
-    <div>{{tabNumber}}</div>
+    template: `
+    <div>{{_tabNumber}}</div>
     `
 })
-export class TabContentComponent{
-    tabNumber = 0;
+export class TabContentComponent implements ITabDynamicContentSupport {
+    _tabNumber = 0;
+
+    constructor() {
+
+    }
     
-    constructor(){
-        
+    setDescriptor = (descriptor: ITabDynamicDescriptor) => {
+        this._tabNumber = descriptor.index;
     }
 }
