@@ -9,18 +9,25 @@ import {ActorsListComponent} from "./actors.list.component";
     selector: 'my-app',
     directives: [Alert, ROUTER_DIRECTIVES],
     template: `
-    <alert type="info">Actor Application</alert>
-    <nav>
-        <ul class="nav nav-pills">
-            <li role="presentation" [class.active]="router.isRouteActive(router.generate(['ActorsList']))"><a [routerLink]="['ActorsList']">Actors</a></li>
-            <li role="presentation" [class.active]="router.isRouteActive(router.generate(['About']))"><a [routerLink]="['About']">About</a></li>
-        </ul>
+    <nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <a class="navbar-brand" href="#">Actors App</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li role="presentation" [class.active]="router.isRouteActive(router.generate(['ActorsList']))"><a [routerLink]="['ActorsList']">Actors</a></li>
+                <li role="presentation" [class.active]="router.isRouteActive(router.generate(['About']))"><a [routerLink]="['About']">About</a></li>
+            </ul>
+        </div>
+    </div>
     </nav>
-    <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
   `,
 })
 @RouteConfig([
-    { path: '/actors-list', name: 'ActorsList', component: ActorsListComponent },
+    { path: '/actors-list', name: 'ActorsList', component: ActorsListComponent, useAsDefault: true },
     { path: '/actor/:id', name: 'Actor', component: ActorComponent },
     { path: '/about', name: 'About', component: AboutComponent }
 ])

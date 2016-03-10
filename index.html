@@ -2,6 +2,7 @@
 
 <head>
     <title>Angular 2 QuickStart</title>
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- 1. Load libraries -->
@@ -27,7 +28,11 @@
                 app: {
                 format: 'register',
                 defaultExtension: 'js'
-                }
+                },
+                services: {
+                format: 'register',
+                defaultExtension: 'js'
+                }                
             },
             map: {
                 moment: 'node_modules/moment/moment.js'
@@ -41,7 +46,9 @@
 <!-- 3. Display the application -->
 
 <body>
-    <my-app>Loading...</my-app>
+    <div class="main-div">
+        <my-app>Loading...</my-app>
+    </div>
 </body>
 
 </html>

@@ -3,7 +3,8 @@ import {RouteConfig, RouterOutlet} from 'angular2/router';
 
 @Component({
     directives: [RouterOutlet],
-    template : '<router-outlet></router-outlet>' 
+    template : `
+    ` 
 })
 export class ActorComponent{
     
