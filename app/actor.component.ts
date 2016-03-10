@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, RouterOutlet} from 'angular2/router';
+import {RouteConfig, RouterOutlet, RouteParams} from 'angular2/router';
 
 @Component({
     directives: [RouterOutlet],
@@ -7,5 +7,7 @@ import {RouteConfig, RouterOutlet} from 'angular2/router';
     ` 
 })
 export class ActorComponent{
-    
+    constructor(private _routeParams:RouteParams){
+        let index = this._routeParams.get('index');
+    }
 }

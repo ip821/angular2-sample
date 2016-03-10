@@ -1,10 +1,10 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, RouterOutlet} from 'angular2/router';
+import {Router, RouteConfig, RouterOutlet} from 'angular2/router';
 import {ActorService, IActor} from "../services/actor.service";
 
 @Component({
     directives: [RouterOutlet],
-    providers: [ActorService], 
+    providers: [ActorService],
     template: `
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -18,7 +18,7 @@ import {ActorService, IActor} from "../services/actor.service";
                     <th>Username</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="#actor of _actors">
+                    <tr *ngFor="#actor of _actors; #i = index" id="{{i}}" (click)="onRowClick(i)">
                         <td>{{actor.firstName}}</td>
                         <td>{{actor.lastName}}</td>
                         <td>{{actor.username}}</td>
@@ -31,10 +31,14 @@ import {ActorService, IActor} from "../services/actor.service";
 })
 export class ActorsListComponent {
     private _actors: IActor[];
-    constructor(private _actorService: ActorService){
+    constructor(private _actorService: ActorService, private _router: Router) {
         _actorService.getActors().subscribe(
             data => this._actors = data,
             error => console.log(error)
         );
+    }
+
+    onRowClick = (index: number) => {
+        this._router.navigate(['Actor', { index: index }]);
     }
 }

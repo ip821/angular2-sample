@@ -6,7 +6,7 @@ import {ActorsListComponent} from "./actors.list.component";
 
 @Component({
     selector: 'my-app',
-    directives: [Alert, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES],
     template: `
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-default">
@@ -27,7 +27,7 @@ import {ActorsListComponent} from "./actors.list.component";
 })
 @RouteConfig([
     { path: '/actors-list', name: 'ActorsList', component: ActorsListComponent, useAsDefault: true },
-    { path: '/actor/:id', name: 'Actor', component: ActorComponent },
+    { path: '/actor/:index', name: 'Actor', component: ActorComponent },
     { path: '/about', name: 'About', component: AboutComponent }
 ])
 export class AppComponent {
