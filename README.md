@@ -1,6 +1,6 @@
 # angular2-sample
 
-How to run:
+## How to run:
 1. Install NodeJs.
 2. npm install tsc -g
 3. npm install tsd -g
