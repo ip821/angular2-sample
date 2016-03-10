@@ -10,6 +10,8 @@ export interface IActor {
 @Injectable()
 export class ActorService {
 
+    private static _actors: IActor[] = null;
+
     constructor(private _http: Http) {
 
     }
@@ -17,7 +19,15 @@ export class ActorService {
     getActors() {
         return this._http
             .get("data/actors.json")
-            .map(res => <IActor[]>res.json());
+            .map(res => {
+                if(ActorService._actors == null){
+                    ActorService._actors = <IActor[]>res.json();
+                }
+                return ActorService._actors;
+            });
     }
 
+    saveActor(index: number, actor: IActor) {
+        ActorService._actors[index] = actor;
+    }
 } 
