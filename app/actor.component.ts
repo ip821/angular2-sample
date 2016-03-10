@@ -15,33 +15,31 @@ import {Tab} from 'ng2-bootstrap';
         </div>
         <div class="panel-body">
             <form (ngSubmit)="onSubmit()" #actorForm="ngForm">
-                <div class="div-table">
-                    <div class="div-table-row">
-                        <div class="div-left">
-                            <div class="form-group">
-                                <label for="firstName">First name</label>
-                                <input type="text" class="form-control" required [(ngModel)]="_actor.firstName" ngControl="firstName" #firstName="ngForm">
-                                <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
-                                    Field is required
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last name</label>
-                                <input type="text" class="form-control" required [(ngModel)]="_actor.lastName" ngControl="lastName" #lastName="ngForm">
-                                <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
-                                    Field is required
-                                </div>
+                <div class="div-container">
+                    <div class="div-left">
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" required [(ngModel)]="_actor.firstName" ngControl="firstName" #firstName="ngForm">
+                            <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+                                Field is required
                             </div>
                         </div>
-                        <div class="div-right">
-                            <div class="form-group">
-                                <label for="username">User name</label>
-                                <input type="text" class="form-control" required [(ngModel)]="_actor.username" ngControl="username" #username="ngForm">
-                                <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-                                    Field is required
-                                </div>
-                            </div>                        
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" required [(ngModel)]="_actor.lastName" ngControl="lastName" #lastName="ngForm">
+                            <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+                                Field is required
+                            </div>
                         </div>
+                    </div>
+                    <div class="div-right">
+                        <div class="form-group">
+                            <label for="username">User name</label>
+                            <input type="text" class="form-control" required [(ngModel)]="_actor.username" ngControl="username" #username="ngForm">
+                            <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+                                Field is required
+                            </div>
+                        </div>                        
                     </div>
                 </div>
                 <button type="submit" class="btn btn-default" [disabled]="!actorForm.form.valid">Save</button>
