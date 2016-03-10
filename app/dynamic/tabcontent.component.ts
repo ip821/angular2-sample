@@ -4,7 +4,7 @@ import {ITabDynamicContentSupport, ITabDynamicDescriptor} from "./tabdynamic.com
 @Component({
     selector: "dynamic-component",
     template: `
-    <div>{{_tabNumber}}</div>
+    <div>Dynamic tab #{{_tabNumber}}</div>
     `
 })
 export class TabContentComponent implements ITabDynamicContentSupport {

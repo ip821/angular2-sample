@@ -1,8 +1,8 @@
 import {Component, ViewChild} from 'angular2/core';
 import {NgForm} from 'angular2/common';
-import {Router, RouteConfig, RouterOutlet, RouteParams} from 'angular2/router';
+import {Router, RouterOutlet, RouteParams} from 'angular2/router';
 import {ActorService, IActor} from "../services/actor.service";
-import {TabComponent} from "./tab.component";
+import {TabComponent} from "./dynamic/tab.component";
 import {Tab} from 'ng2-bootstrap';
 
 @Component({
