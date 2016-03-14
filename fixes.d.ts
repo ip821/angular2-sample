@@ -10,3 +10,5 @@ interface ArrayConstructor {
 interface String {
     repeat(count:number): string;
 }
+
+declare var require: any;
