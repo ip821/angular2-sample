@@ -3,15 +3,13 @@ import {Http, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 
 export interface IActor {
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     username: string;
 }
 
 @Injectable()
 export class ActorService {
-
-    private static _actors: IActor[] = null;
 
     constructor(private _http: Http) {
 
@@ -19,21 +17,12 @@ export class ActorService {
 
     getActors(): Observable<IActor[]> {
         
-        if (ActorService._actors != null) {
-            return Observable.of(ActorService._actors);
-        }
-
         return this._http
-            .get("data/actors.json")
-            .map(res => {
-                if (ActorService._actors == null) {
-                    ActorService._actors = <IActor[]>res.json();
-                }
-                return ActorService._actors;
-            });
+            .get("/db")
+            .map(res => <IActor[]>res.json());
     }
 
     saveActor(index: number, actor: IActor) {
-        ActorService._actors[index] = actor;
+        return this._http.post("/db", JSON.stringify(actor));
     }
 } 

@@ -19,8 +19,8 @@ import {ActorService, IActor} from "../services/actor.service";
                 </thead>
                 <tbody>
                     <tr *ngFor="#actor of _actors; #i = index" id="{{i}}" (click)="onRowClick(i)">
-                        <td>{{actor.firstName}}</td>
-                        <td>{{actor.lastName}}</td>
+                        <td>{{actor.first_name}}</td>
+                        <td>{{actor.last_name}}</td>
                         <td>{{actor.username}}</td>
                     </tr>
                 </tbody>

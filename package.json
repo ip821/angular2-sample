@@ -1,20 +1,22 @@
 {
   "name": "angular2-quickstart",
   "version": "1.0.0",
+  "main": "start.js",
   "scripts": {
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "lite": "lite-server",
-    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+    "start": "node --use_strict start.js"
   },
   "license": "ISC",
   "dependencies": {
-    "angular2": "^2.0.0-beta.7",
+    "angular2": "2.0.0-beta.9",
     "bootstrap": "^3.3.6",
+    "ejs": "2.3.3",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3",
+    "express": "^4.13.3",
+    "harp": "^0.20.1",
     "jquery": "^2.2.1",
     "ng2-bootstrap": "1.0.5",
+    "pg": "^4.5.2",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.23",

@@ -52,7 +52,7 @@ import {Tab} from 'ng2-bootstrap';
 export class ActorComponent {
 
     private _index: number;
-    private _actor: IActor = { firstName: "", lastName: "", username: "" };
+    private _actor: IActor = { first_name: "", last_name: "", username: "" };
     @ViewChild(TabComponent) private _tabComponent: TabComponent;
 
     constructor(private _routeParams: RouteParams, private _actorService: ActorService, private _router: Router) {
@@ -65,7 +65,6 @@ export class ActorComponent {
     }
 
     onSubmit = () => {
-        this._actorService.saveActor(this._index, this._actor);
-        this._router.navigate(['ActorsList', { index: this._index }]);
+        this._actorService.saveActor(this._index, this._actor).subscribe(res => this._router.navigate(['ActorsList', { index: this._index }]));
     }
 }

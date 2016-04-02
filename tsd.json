@@ -5,14 +5,29 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "moment/moment.d.ts": {
-      "commit": "3a86e056dc018541d82dd74639fca18ba8d605da"
+    "serve-static/serve-static.d.ts": {
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
     },
-    "moment/moment-node.d.ts": {
-      "commit": "3a86e056dc018541d82dd74639fca18ba8d605da"
+    "express/express.d.ts": {
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
+    },
+    "express-serve-static-core/express-serve-static-core.d.ts": {
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
+    },
+    "node/node.d.ts": {
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
+    },
+    "mime/mime.d.ts": {
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
     },
     "jquery/jquery.d.ts": {
-      "commit": "0487f3c3f4538c7db7263f8dabb12490defe25b8"
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
+    },
+    "moment/moment.d.ts": {
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
+    },
+    "moment/moment-node.d.ts": {
+      "commit": "e8f8e7471b8ca92ca417f8c878f64ae4d1067972"
     }
   }
 }
