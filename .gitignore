@@ -3,3 +3,4 @@ typings
 *.js.map
 *.js
 dist
+!server.js
