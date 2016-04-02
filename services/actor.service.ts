@@ -3,6 +3,7 @@ import {Http, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 
 export interface IActor {
+    id: number;
     first_name: string;
     last_name: string;
     username: string;
@@ -19,7 +20,8 @@ export class ActorService {
         
         return this._http
             .get("/db")
-            .map(res => <IActor[]>res.json());
+            .map(res => <IActor[]>res.json())
+            .do(actors => console.log(actors));
     }
 
     saveActor(index: number, actor: IActor) {

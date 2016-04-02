@@ -2,12 +2,13 @@ const express = require('express');
 const path = require("path");
 const bodyParser = require('body-parser');
 const pg = require('pg');
+const fs = require('fs');
 const app = express();
 
 var databaseUrl = process.env.DATABASE_URL;
 if (databaseUrl == undefined) {
     databaseUrl = "pg://postgres:123@localhost/postgres";
-}else{
+} else {
     pg.defaults.ssl = true;
 }
 
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 function handleRoot(req, res) {
     var url = req.originalUrl;
-    if (url == "/") {
+    if (url == "/" || !fs.existsSync(path.join(__dirname + url))) {
         url = "/index.html";
     }
     res.sendFile(path.join(__dirname + url));
@@ -25,23 +26,34 @@ function handleRoot(req, res) {
 
 function handleDbGet(req, res) {
     console.log(req.originalUrl + "-" + req.method);
-    pg.connect(databaseUrl, function(err, client) {
+    pg.connect(databaseUrl, function(err, client, done) {
         if (err) throw err;
-        console.log('Connected to postgres! Getting schemas...');
 
         client
-            .query('SELECT firstName, lastName, username FROM actor;')
-            .on('row', function(row) {
-                console.log(JSON.stringify(row));
+            .query('SELECT id, first_name, last_name, username FROM actor;', function(err, result) {
+                done();
+                if (err) throw err;
+                var rows = JSON.stringify(result.rows);
+                console.log(rows);
+                res.send(rows);
             });
     });
-    //res.status(200).send([{ firstName: "firstName", lastName: "lastName", username: "username" }]);
 }
 
 function handleDbPost(req, res) {
     console.log(req.originalUrl + "-" + req.method);
-    console.log(req.body);
-    res.send("POST Ok.");
+    var actor = req.body;
+    pg.connect(databaseUrl, function(err, client, done) {
+        if (err) throw err;
+        client.query(
+            "UPDATE actor SET first_name=$2, last_name=$3, username=$4 WHERE id=($1);",
+            [actor.id, actor.first_name, actor.last_name, actor.username],
+            function(err, result) {
+                done();
+                if (err) throw err;
+                res.send("POST Ok.");
+            });
+    });
 }
 
 app.route('/db')

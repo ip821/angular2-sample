@@ -19,14 +19,14 @@ import {Tab} from 'ng2-bootstrap';
                     <div class="div-left">
                         <div class="form-group">
                             <label for="firstName">First name</label>
-                            <input type="text" class="form-control" required [(ngModel)]="_actor.firstName" ngControl="firstName" #firstName="ngForm">
+                            <input type="text" class="form-control" required [(ngModel)]="_actor.first_name" ngControl="firstName" #firstName="ngForm">
                             <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
                                 Field is required
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="lastName">Last name</label>
-                            <input type="text" class="form-control" required [(ngModel)]="_actor.lastName" ngControl="lastName" #lastName="ngForm">
+                            <input type="text" class="form-control" required [(ngModel)]="_actor.last_name" ngControl="lastName" #lastName="ngForm">
                             <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
                                 Field is required
                             </div>
@@ -52,7 +52,7 @@ import {Tab} from 'ng2-bootstrap';
 export class ActorComponent {
 
     private _index: number;
-    private _actor: IActor = { first_name: "", last_name: "", username: "" };
+    private _actor: IActor = { id: 0, first_name: "", last_name: "", username: "" };
     @ViewChild(TabComponent) private _tabComponent: TabComponent;
 
     constructor(private _routeParams: RouteParams, private _actorService: ActorService, private _router: Router) {
