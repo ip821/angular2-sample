@@ -32,14 +32,13 @@ function handleDbGet(req, res) {
     pg.connect(databaseUrl, function(err, client, done) {
         if (err) throw err;
 
-        client
-            .query('SELECT id, first_name, last_name, username FROM actor;', function(err, result) {
-                done();
-                if (err) throw err;
-                var rows = JSON.stringify(result.rows);
-                console.log(rows);
-                res.send(rows);
-            });
+        client.query('SELECT id, first_name, last_name, username FROM actor;', function(err, result) {
+            done();
+            if (err) throw err;
+            var rows = JSON.stringify(result.rows);
+            console.log(rows);
+            res.send(rows);
+        });
     });
 }
 
