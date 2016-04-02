@@ -18,7 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 function handleRoot(req, res) {
     var url = req.originalUrl;
-    if (url == "/" || !fs.existsSync(path.join(__dirname + url))) {
+    if (!fs.existsSync(path.join(__dirname + url))) {
+        res.redirect('/');
+    }
+    if (url == "/") {
         url = "/index.html";
     }
     res.sendFile(path.join(__dirname + url));
