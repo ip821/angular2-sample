@@ -1,8 +1,9 @@
 import express = require("express");
 import path = require("path");
 import api = require("./route/api");
-const bodyParser = require('body-parser');
-const fs = require('fs');
+import bodyParser = require('body-parser');
+import fs = require('fs');
+
 const app = express();
 
 var dirname = __dirname + "/../client/";

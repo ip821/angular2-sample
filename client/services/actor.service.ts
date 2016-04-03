@@ -19,12 +19,12 @@ export class ActorService {
     getActors(): Observable<IActor[]> {
         
         return this._http
-            .get("/db")
+            .get("/api/db")
             .map(res => <IActor[]>res.json())
             .do(actors => console.log(actors));
     }
 
     saveActor(index: number, actor: IActor) {
-        return this._http.post("/db", JSON.stringify(actor));
+        return this._http.post("/api/db", JSON.stringify(actor));
     }
 } 

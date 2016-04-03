@@ -3,6 +3,8 @@ import {Router, Request, Response} from 'express';
 import {Client, ClientConfig, connect as dbConnect} from "pg";
 
 const router = Router();
+export = router;
+
 var databaseUrl = process.env.DATABASE_URL;
 if (databaseUrl == undefined) {
     databaseUrl = "pg://postgres:123@localhost/postgres";
