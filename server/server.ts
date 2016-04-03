@@ -5,6 +5,9 @@ const pg = require('pg');
 const fs = require('fs');
 const app = express();
 
+var dirname = __dirname + "/../client/";
+console.log(dirname);
+
 var databaseUrl = process.env.DATABASE_URL;
 if (databaseUrl == undefined) {
     databaseUrl = "pg://postgres:123@localhost/postgres";
@@ -18,13 +21,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 function handleRoot(req, res) {
     var url = req.originalUrl;
-    if (!fs.existsSync(path.join(__dirname + url))) {
+    if (!fs.existsSync(path.join(dirname + url))) {
         res.redirect('/');
     }
     if (url == "/") {
         url = "/index.html";
     }
-    res.sendFile(path.join(__dirname + url));
+    res.sendFile(path.join(dirname + url));
 }
 
 function handleDbGet(req, res) {
