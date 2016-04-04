@@ -1,11 +1,6 @@
-import {Client, ClientConfig, connect as dbConnect} from "pg";
+import {connect as dbConnect} from "pg";
 
-var databaseUrl = process.env.DATABASE_URL;
-if (databaseUrl == undefined) {
-    databaseUrl = "pg://postgres:123@localhost/postgres";
-} else {
-    //pg.defaults.ssl = true;
-}
+var databaseUrl = process.env.DATABASE_URL || "pg://postgres:123@localhost/postgres";
 
 export function initDb() {
     dbConnect(databaseUrl, (err, client, done) => {

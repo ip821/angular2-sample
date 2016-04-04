@@ -1,15 +1,10 @@
 import express = require('express');
-import {Router, Request, Response} from 'express';
-import {Client, ClientConfig, connect as dbConnect} from "pg";
+import {Router} from 'express';
+import {connect as dbConnect} from "pg";
 
 const router = Router();
 
-var databaseUrl = process.env.DATABASE_URL;
-if (databaseUrl == undefined) {
-    databaseUrl = "pg://postgres:123@localhost/postgres";
-} else {
-    //pg.defaults.ssl = true;
-}
+var databaseUrl = process.env.DATABASE_URL || "pg://postgres:123@localhost/postgres";
 
 router.get("/get-actors", (req, res) => {
     console.log(req.originalUrl + "-" + req.method);
