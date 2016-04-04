@@ -4,3 +4,4 @@ typings
 *.js
 dist
 !server.js
+!gulpfile.js

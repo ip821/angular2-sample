@@ -1,10 +1,7 @@
 {
-    "name": "angular2-quickstart",
+    "name": "angular2-quickstart-client",
     "version": "1.0.0",
     "main": "start.js",
-    "scripts": {
-        "start": "node --use_strict start.js"
-    },
     "license": "ISC",
     "dependencies": {
         "ejs": "2.3.3",

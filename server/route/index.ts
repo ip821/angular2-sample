@@ -6,17 +6,15 @@ import fs = require('fs');
 var dirname = __dirname + "/../../client/";
 console.log(dirname);
 
-const router = Router();
-
-router.get("/", (req, res) => {
+function index(req, res) {
     var url = req.originalUrl;
-    if (!fs.existsSync(path.join(dirname + url))) {
+    if (!fs.existsSync(path.join(dirname, url))) {
         res.redirect('/');
     }
     if (url == "/") {
         url = "/index.html";
     }
-    res.sendFile(path.join(dirname + url));
-});
+    res.sendFile(path.join(dirname, url));
+};
 
-export = router;
+export = index;

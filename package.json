@@ -1,0 +1,15 @@
+{
+  "name": "angular2-quickstart",
+  "version": "1.0.0",
+  "main": "start.js",
+  "scripts": {
+    "start": "node --use_strict start.js"
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.12.2",
+    "run-sequence": "^1.1.5"
+  }
+}

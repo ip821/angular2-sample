@@ -10,3 +10,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api", api);
 app.use("/", index);
 app.listen(process.env.PORT || 3000);
+//# sourceMappingURL=server.js.map
