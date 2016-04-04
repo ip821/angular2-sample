@@ -3,7 +3,6 @@ import {Router, Request, Response} from 'express';
 import {Client, ClientConfig, connect as dbConnect} from "pg";
 
 const router = Router();
-export = router;
 
 var databaseUrl = process.env.DATABASE_URL;
 if (databaseUrl == undefined) {
@@ -12,7 +11,7 @@ if (databaseUrl == undefined) {
     //pg.defaults.ssl = true;
 }
 
-router.get("/db", (req, res) => {
+router.get("/get-actors", (req, res) => {
     console.log(req.originalUrl + "-" + req.method);
     dbConnect(databaseUrl, function(err, client, done) {
         if (err) throw err;
@@ -27,7 +26,7 @@ router.get("/db", (req, res) => {
     });
 });
 
-router.post("/db", (req, res) => {
+router.post("/save-actor", (req, res) => {
     console.log(req.originalUrl + "-" + req.method);
     var actor = req.body;
     dbConnect(databaseUrl, function(err, client, done) {
@@ -43,3 +42,5 @@ router.post("/db", (req, res) => {
     });
 
 });
+
+export = router;
