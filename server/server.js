@@ -3,6 +3,8 @@ var express = require("express");
 var bodyParser = require('body-parser');
 var api = require("./route/api");
 var index = require("./route/index");
+var init = require("./util/initDb");
+init.initDb();
 var app = express();
 app.set("view options", { layout: false });
 app.use(bodyParser.json());
