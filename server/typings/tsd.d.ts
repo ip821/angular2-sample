@@ -5,3 +5,5 @@
 /// <reference path="node/node.d.ts" />
 /// <reference path="pg/pg.d.ts" />
 /// <reference path="serve-static/serve-static.d.ts" />
+/// <reference path="pg-promise/pg-promise.d.ts" />
+/// <reference path="es6-promise/es6-promise.d.ts" />

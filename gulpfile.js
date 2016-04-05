@@ -35,6 +35,5 @@ gulp.task("build-server", function(done) {
 });
 
 gulp.task("default", function(done) {
-    runSequence("build-client", "build-server");
-    done();
+    runSequence("build-client", "build-server", done);
 });

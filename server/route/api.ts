@@ -1,41 +1,30 @@
 import express = require('express');
 import {Router} from 'express';
 import {connect as dbConnect} from "pg";
+import pgPromiseFactory = require("pg-promise");
 
+const pgPromise = pgPromiseFactory();
 const router = Router();
 
 var databaseUrl = process.env.DATABASE_URL || "pg://postgres:123@localhost/postgres";
 
 router.get("/get-actors", (req, res) => {
-    console.log(req.originalUrl + "-" + req.method);
-    dbConnect(databaseUrl, function(err, client, done) {
-        if (err) throw err;
-
-        client.query('SELECT id, first_name, last_name, username FROM actor;', function(err, result) {
-            done();
-            if (err) throw err;
-            var rows = JSON.stringify(result.rows);
+    pgPromise(databaseUrl)
+        .manyOrNone('SELECT id, first_name, last_name, username FROM actor;')
+        .then(result => {
+            var rows = JSON.stringify(result);
             console.log(rows);
             res.send(rows);
-        });
-    });
+        })
+        .catch(err => { throw err; });
 });
 
 router.post("/save-actor", (req, res) => {
-    console.log(req.originalUrl + "-" + req.method);
     var actor = req.body;
-    dbConnect(databaseUrl, function(err, client, done) {
-        if (err) throw err;
-        client.query(
-            "UPDATE actor SET first_name=$2, last_name=$3, username=$4 WHERE id=($1);",
-            [actor.id, actor.first_name, actor.last_name, actor.username],
-            function(err, result) {
-                done();
-                if (err) throw err;
-                res.send("POST Ok.");
-            });
-    });
-
+    pgPromise(databaseUrl)
+        .query("UPDATE actor SET first_name=${first_name}, last_name=${last_name}, username=${username} WHERE id=${id}", actor)
+        .then(result => res.sendStatus(200))
+        .catch(err => { throw err; });
 });
 
 export = router;

@@ -1,16 +1,16 @@
 {
-    "name": "angular2-quickstart",
-    "version": "1.0.0",
-    "main": "start.js",
-    "scripts": {
-        "start": "node --use_strict start.js",
-        "postinstall": "gulp install-client && gulp install-server && gulp"
-    },
-    "license": "ISC",
-    "dependencies": {
-        "gulp": "^3.9.1",
-        "gulp-typescript": "^2.12.2",
-        "run-sequence": "^1.1.5"
-    },
-    "devDependencies": {}
+  "name": "angular2-quickstart",
+  "version": "1.0.0",
+  "main": "start.js",
+  "scripts": {
+    "start": "node --use_strict start.js",
+    "postinstall": "gulp install-client && gulp install-server && gulp"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.12.2",
+    "run-sequence": "^1.1.5"
+  },
+  "devDependencies": {}
 }
